@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1>Listado De Paises De Latam:3 </h1>
+    {% if userName: %}
+        <h2>Bienvenido {{userName}} :3</h2>
+    {% else: %}
+        <h2>Usuario invitado</h2>
+    {% endif %}
+
+    {{paises}}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Poblacion</th>
+                <th>Superficie</th>
+                <th>No_Paises</th>
+                <th>Densidad</th>
+                <th>Paises</th>
+                <th>Capital</th>
+                <th>Moneda</th>
+                <th>Poblacion</th>
+            </tr> 
+        </thead>
+             
+        <tbody>
+            <!-- Vamos a recorrer el arreglo que traemos de el controlador principal, el arreglo siempre debe ser en plurar y el elemnto en singular que sera pues cada elemento en el arreglo -->
+            {% for Continente in Continentes%}
+            
+            <tr>
+                <!-- Imprimimos el elemento que este recorriendo el for -->
+                <td rowspan="{{Continente.paises | length}}">{{Continente.Nombre}}</td>
+                <td rowspan="{{Continente.paises | length}}">{{Continente.Poblacion}}</td>
+                <td rowspan="{{Continente.paises | length}}">{{Continente.Superficie}}</td>
+                <td rowspan="{{Continente.paises | length}}">{{Continente.No_Paises}}</td>
+                <td rowspan="{{Continente.paises | length}}">{{Continente.Densidad}}</td>
+                {%for pais in Continente.paises%}
+                <td>{{pais.nom}}</td>
+                <td>{{pais.cap}}</td>
+                <td>{{pais.mon}}</td>
+                <td>{{pais.poblacion}}</td></tr>
+                
+                {% endfor%}
+                
+            <!-- Cerramos el ciclo -->
+            {% endfor%}
+            
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</body>
+</html>
